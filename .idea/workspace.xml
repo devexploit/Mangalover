@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4eb26093-accc-4121-b2cb-1ed966cf5bb1" name="Default Changelist" comment="" />
+    <list default="true" id="4eb26093-accc-4121-b2cb-1ed966cf5bb1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -125,6 +127,7 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1hzf5gVbMALE6mS5FlvYRl9jbcm" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -160,9 +163,9 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1601051435713">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1601067977783">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/1920.174.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1601051435713" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/1920.174.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1601067977783" />
   </component>
 </project>

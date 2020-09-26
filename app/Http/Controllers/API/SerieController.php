@@ -110,21 +110,30 @@ class SerieController extends Controller
             return response()->json(['error'=>'data not found'],404);
         }
         $serie->update($request->all());
-        if(isset($request->category)){
-            SeriesCategories::where('serie_id',$id)->delete();
+            $serr = SeriesCategories::with(['serie','category'])->where('serie_id',$id,)->get();
+            $filter = [];
+            foreach ($serr as $s){
+                if(!in_array($s->category->category_name,$request->category)){
+                    $s->delete();
+                }
+                else if(in_array($s->category->category_name,$request->category)){
+                    array_push($filter,$s->category->category_name);
+                }
+            }
+
             foreach ($request->category as $cate){
 
                 $cat = Category::where('category_name',$cate)->first();
-                SeriesCategories::create(
-                    [
-                        'category_id' => $cat->id,
-                        'serie_id'=>$id
-                    ]
-                );
+               if(!in_array($cate,$filter)){
+                   SeriesCategories::create(
+                       ['category_id'=>$cat->id,
+                           'serie_id'=>$id]
+                   );
+               }
             }
 
-        }
-        return response()->json($serie,200);
+        return \response()->json(['serie'=>SeriesCategories::with('serie','category')->where('serie_id',$serie->id)->get()],200);
+
     }
 
     public function seriesDelete($id){
