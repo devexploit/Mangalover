@@ -16,7 +16,6 @@ class Auth
      */
     public function handle(Request $request, Closure $next)
     {
-        echo "girdi";
         return $next($request);
     }
 }

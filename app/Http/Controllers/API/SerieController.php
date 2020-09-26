@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Validator;
 use App\Models\SeriesCategories;
 use App\Models\Category;
+use Illuminate\Support\Facades\DB;
 
 class SerieController extends Controller
 {
@@ -49,20 +50,7 @@ class SerieController extends Controller
         }
 
         $serie = Serie::create($request->all());
-//            foreach ($request->category as $kategori){
-//
-//                $cat = Category::where('category_name',$kategori)->first();
-//                if(is_null($cat)){
-//                    return response()->json(['error'=>'category not found'],404);
-//                }
-//                SeriesCategories::create(
-//                    [
-//                        'category_id' => $cat->id,
-//                        'serie_id'=>$serie->id
-//                        ]
-//                );
-//
-//            }
+
             foreach ($request->category as $cate){
 
                 $cat = Category::where('category_name',$cate)->first();
@@ -74,16 +62,13 @@ class SerieController extends Controller
                 );
             }
 
-        return \response()->json(['serie'=>SeriesCategories::with('serie','category')->where('serie_id',$serie->id)->get()],201);
+        $kat = DB::table('categories')
+            ->join('series_categories','series_categories.category_id','=','categories.id')
+            ->where('series_categories.serie_id',$serie->id)
+            ->select('category_name')
+            ->get();
 
-//        return response()->json(['serie'=>$serie],201);
-
-//        $seriescategories = SeriesCategories::with(['serie','category'])->get();
-//        return response()->json($seriescategories);
-
-//        $categories = Category::with('seriescategories')->where('category_name','dram')->get();
-//        return response()->json($categories);
-
+        return \response()->json(['serie'=>$serie,'categories'=>$kat],201);
 
 
     }
@@ -101,7 +86,7 @@ class SerieController extends Controller
 
         $validator = Validator::make($request->all(),$rules);
         if($validator->fails()){
-            return response()->json(['errors'=>$validator->errors()],200);
+            return response()->json(['errors'=>$validator->errors()],400);
 
         }
 
@@ -110,6 +95,7 @@ class SerieController extends Controller
             return response()->json(['error'=>'data not found'],404);
         }
         $serie->update($request->all());
+        if(isset($request->category)){
             $serr = SeriesCategories::with(['serie','category'])->where('serie_id',$id,)->get();
             $filter = [];
             foreach ($serr as $s){
@@ -131,8 +117,28 @@ class SerieController extends Controller
                    );
                }
             }
+        }
 
-        return \response()->json(['serie'=>SeriesCategories::with('serie','category')->where('serie_id',$serie->id)->get()],200);
+        $se = Serie::find($id);
+        $kat = DB::table('categories')
+            ->join('series_categories','series_categories.category_id','=','categories.id')
+            ->where('series_categories.serie_id',$id)
+            ->select('category_name')
+            ->get();
+
+
+        return \response()->json(['serie'=>$se,'categories'=>$kat],200);
+
+//        $joinle = DB::table('series')
+//            ->join('series_categories','series.id','=','series_categories.serie_id')
+//            ->join('categories','categories.id','=','series_categories.category_id')
+//            ->where('series_categories.serie_id',$id)
+//            ->get();
+//
+//        return $joinle;
+
+
+
 
     }
 
