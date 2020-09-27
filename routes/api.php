@@ -33,11 +33,11 @@ Route::get('series/{id}',[SerieController::class,'serieDetails']);
 //user
 Route::post('register',[UserController::class,'register']);
 Route::post('login',[UserController::class,'login']);
+Route::put('password-reset',[UserController::class,'passwordChange']);
 
 Route::middleware([Auth::class])->group(function(){
 
     //series
-
     Route::post('series',[SerieController::class,'seriesPost']);
     Route::put('series/{id}',[SerieController::class,'seriesPut']);
     Route::delete('series/{id}',[SerieController::class,'seriesDelete']);
@@ -46,6 +46,5 @@ Route::middleware([Auth::class])->group(function(){
     Route::post('category',[CategoryController::class,'categoryPost']);
     Route::put('category/{id}',[CategoryController::class,'categoryPut']);
     Route::delete('category/{id}',[CategoryController::class,'categoryDelete']);
-
 
 });
