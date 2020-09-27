@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4eb26093-accc-4121-b2cb-1ed966cf5bb1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Mylist.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Mylist.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/SerieController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/SerieController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/Auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/Auth.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,6 +132,7 @@
       <path value="$PROJECT_DIR$/vendor/facade/ignition" />
       <path value="$PROJECT_DIR$/vendor/fideloper/proxy" />
       <path value="$PROJECT_DIR$/vendor/voku/portable-ascii" />
+      <path value="$PROJECT_DIR$/vendor/predis/predis" />
     </include_path>
   </component>
   <component name="ProjectId" id="1hzf5gVbMALE6mS5FlvYRl9jbcm" />
@@ -163,7 +166,8 @@
       <option name="presentableId" value="Default" />
       <updated>1601018659379</updated>
       <workItem from="1601018661126" duration="22348000" />
-      <workItem from="1601120067881" duration="9324000" />
+      <workItem from="1601120067881" duration="14086000" />
+      <workItem from="1601212252411" duration="6489000" />
     </task>
     <servers />
   </component>
@@ -171,10 +175,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1601120075251">
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1601212264794">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/1920.174.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1601120075251" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/1920.174.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1601212264794" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1601067977783">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
