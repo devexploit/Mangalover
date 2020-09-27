@@ -6,6 +6,7 @@ use App\Http\Controllers\API\SerieController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Middleware\Auth;
+use App\Http\Middleware\Admin;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,9 +34,15 @@ Route::get('series/{id}',[SerieController::class,'serieDetails']);
 //user
 Route::post('register',[UserController::class,'register']);
 Route::post('login',[UserController::class,'login']);
-Route::put('password-reset',[UserController::class,'passwordChange']);
 
 Route::middleware([Auth::class])->group(function(){
+
+    //user
+    Route::put('password-reset',[UserController::class,'passwordChange']);
+
+});
+
+Route::middleware([Admin::class])->group(function(){
 
     //series
     Route::post('series',[SerieController::class,'seriesPost']);
@@ -48,3 +55,4 @@ Route::middleware([Auth::class])->group(function(){
     Route::delete('category/{id}',[CategoryController::class,'categoryDelete']);
 
 });
+

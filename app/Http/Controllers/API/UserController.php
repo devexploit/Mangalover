@@ -53,7 +53,11 @@ class UserController extends Controller
         $this->app->hmset($userToken->token,
             ["user_id"=>$user->id,
             "token"=>$token,
-            "time"=>$userToken->created_at]
+            "time"=>$userToken->created_at,
+            "is_admin"=>0,
+
+                "username" => $user->username
+            ]
         );
 
         return response(['user' => $user, 'token'=>$userToken->token]);
@@ -95,7 +99,7 @@ class UserController extends Controller
 
         $userToken = Token::where('user_id',$user->id)->first();
 
-     if(strtotime($userToken->updated_at) + 120 < time()){
+     if(strtotime($userToken->updated_at) + 1200 < time()){
 
          $token = openssl_random_pseudo_bytes(64);
          $token = bin2hex($token);
@@ -106,7 +110,10 @@ class UserController extends Controller
          $this->app->hmset($token,
              ["user_id"=>$user->id,
                  "token"=>$token,
-                 "time"=>$userToken->updated_at]
+                 "time"=>$userToken->updated_at,
+                 "is_admin"=>0,
+                 "username" => $user->username
+             ]
          );
      }
 
@@ -128,15 +135,24 @@ class UserController extends Controller
             return response()->json(['errors'=>$validate->errors()],400);
         }
 
+        $username = $this->app->hget($request->header('Authorization'),'username');
 
+        if(!auth()->attempt([
+            'username' => $username,
+            'password' => $request['password']
+        ])){
+            return response()->json(['error'=>'wrong password'],200);
+        }
 
+        User::where('username',$username)->first()
+        ->update(
+            [
+                'password' => bcrypt($request->new_password)
+            ]
+        );
 
-//        if(!auth()->attempt([
-//            'username' =>
-//            'password' => $request['password']
-//        ])){
-//            return "gir";
-//        }
+        return response()->json(['okay'=>'password changed successfully'],200);
+
 
     }
 
