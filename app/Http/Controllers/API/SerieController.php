@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use App\Models\Serie;
 use http\Env\Response;
 use Illuminate\Http\Request;
@@ -68,6 +69,7 @@ class SerieController extends Controller
             ->select('category_name')
             ->get();
 
+
         return \response()->json(['serie'=>$serie,'categories'=>$kat],201);
 
 
@@ -120,6 +122,11 @@ class SerieController extends Controller
         }
 
         $se = Serie::find($id);
+
+        $seriesComment = Comment::where('serie_id',$id)
+            ->select('comment')
+            ->get();
+
         $kat = DB::table('categories')
             ->join('series_categories','series_categories.category_id','=','categories.id')
             ->where('series_categories.serie_id',$id)
@@ -127,7 +134,7 @@ class SerieController extends Controller
             ->get();
 
 
-        return \response()->json(['serie'=>$se,'categories'=>$kat],200);
+        return \response()->json(['serie'=>$se,'categories'=>$kat,'comments'=>$seriesComment],200);
 
 //        $joinle = DB::table('series')
 //            ->join('series_categories','series.id','=','series_categories.serie_id')
