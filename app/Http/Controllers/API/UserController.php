@@ -98,26 +98,89 @@ class UserController extends Controller
 
       //  return $user;
 
-        $userToken = Token::where('user_id',$user->id)->first();
-
-     if(strtotime($userToken->updated_at) + 1200 < time()){
-         $token = openssl_random_pseudo_bytes(64);
+        $token = openssl_random_pseudo_bytes(64);
          $token = bin2hex($token);
 
-         $this->app->del($userToken->token);
-         $userToken->token = $token;
-         $userToken->save();
-         $this->app->hmset($token,
-             ["user_id"=>$user->id,
-                 "token"=>$token,
-                 "time"=>$userToken->updated_at,
-                 "is_admin"=>0,
-                 "username" => $user->username
-             ]
-         );
-     }
+        $userToken = Token::where('user_id',$user->id)->first();
 
-        return response(['user' => $user, 'token'=>$userToken->token]);
+        if($userToken) {
+            $this->app->del($userToken->token);
+            $userToken->update(
+                [
+                    'token' => $token
+                ]
+            );
+            $this->app->hmset($token,
+                ["user_id"=>$user->id,
+                    "token"=>$token,
+                    "time"=>$userToken->updated_at,
+                    "is_admin"=>0,
+                    "username" => $user->username
+                ]
+            );
+
+            return response(['user' => $user, 'token'=>$token], );
+        }
+
+
+        $newToken = Token::create(
+            [
+                'token' => $token,
+                'user_id' => $user->id,
+                'is_admin' => 0
+            ]
+        );
+
+        $this->app->hmset($token,
+            ["user_id"=>$user->id,
+                "token"=>$token,
+                "time"=>$newToken->created_at,
+                "is_admin"=>0,
+                "username" => $user->username
+            ]
+        );
+
+        return response(['user' => $user, 'token'=>$token]);
+
+
+
+//     if(strtotime($userToken->updated_at) + 1200 < time()){
+//         $token = openssl_random_pseudo_bytes(64);
+//         $token = bin2hex($token);
+//
+//         $this->app->del($userToken->token);
+//         $userToken->token = $token;
+//         $userToken->save();
+//         $this->app->hmset($token,
+//             ["user_id"=>$user->id,
+//                 "token"=>$token,
+//                 "time"=>$userToken->updated_at,
+//                 "is_admin"=>0,
+//                 "username" => $user->username
+//             ]
+//         );
+//     }
+
+
+
+    }
+
+    public function logout(Request $request){
+
+        try {
+            $autho = $request->header('Authorization');
+            $this->app->del($autho);
+            Token::where('token',$autho)->delete();
+
+            return response()->json(['token'=>$autho]);
+
+        }
+
+        catch (\Exception $err){
+
+            return response()->json(['error'=>$err]);
+
+        }
 
     }
 

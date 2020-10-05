@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4eb26093-accc-4121-b2cb-1ed966cf5bb1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/CategoryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/SerieController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/SerieController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bootstrap/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_100000_create_password_resets_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_100000_create_password_resets_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/Auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/Auth.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -147,7 +144,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../SymfonyWebsite" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RunManager">
@@ -173,6 +170,8 @@
       <workItem from="1601263735079" duration="210000" />
       <workItem from="1601265690591" duration="2437000" />
       <workItem from="1601334372771" duration="8117000" />
+      <workItem from="1601388396192" duration="368000" />
+      <workItem from="1601901083116" duration="2948000" />
     </task>
     <servers />
   </component>
@@ -188,6 +187,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/1920.174.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1601267231968" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1601901111431">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/1920.174.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1601901111431" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1601901111431">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.center/1920.174.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1601901111431" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1601901111430">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.left/1920.174.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1601901111430" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1601901111431">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.right/1920.174.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1601901111431" />
     <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1601334375332">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

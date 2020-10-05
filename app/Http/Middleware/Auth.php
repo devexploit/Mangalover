@@ -18,18 +18,27 @@ class Auth
      */
     public function handle(Request $request, Closure $next)
     {
-        $autho = $request->header('Authorization');
 
-        $app = Redis::connection();
-       $userToken =  $app->hgetall($autho);
-       if($userToken){
+        try {
+            $autho = $request->header('Authorization');
+
+            $app = Redis::connection();
+            $userToken =  $app->hgetall($autho);
 
 
-       if($autho == $userToken['token'] && strtotime($userToken['time']) + 1200 > time() && $userToken['is_admin'] == "0"){
-           return $next($request);
-       }
-       }
-        return response(['error'=>'no user'],401);
+            if($autho == $userToken['token'] && strtotime($userToken['time']) + 1200 > time() && $userToken['is_admin'] == "0"){
+                return $next($request);
+            }
+            $app->del($autho);
+            return response(['error'=>'no user'],401);
+        }
+
+        catch (\Exception $err) {
+            return response()->json(['error'=>$err]);
+        }
+
+
+
 
     }
 }

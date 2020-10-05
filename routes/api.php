@@ -25,8 +25,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //series
-Route::get('series',[SerieController::class,'seriesGet']);
 Route::get('series/{id}',[SerieController::class,'serieDetails']);
+Route::get('series',[SerieController::class,'seriesGet']);
 
 
 //category
@@ -35,6 +35,8 @@ Route::get('series/{id}',[SerieController::class,'serieDetails']);
 //user
 Route::post('register',[UserController::class,'register']);
 Route::post('login',[UserController::class,'login']);
+Route::get('logout',[UserController::class,'logout']);
+
 
 Route::post('reset-password',[UserController::class,'resetPasswordRequest']);
 Route::put('reset-password/{token}',[UserController::class,'resetPasswordPut']);
